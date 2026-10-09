@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dice_Game
 {
-    internal class Program
+    internal class Program //Maxym F
     {
         static void Main(string[] args)
         {
