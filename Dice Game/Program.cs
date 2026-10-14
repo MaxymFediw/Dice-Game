@@ -155,7 +155,7 @@ namespace Dice_Game
                         die1.DrawRoll();
                         die2.DrawRoll();
 
-                        if (die2.Roll - die1.Roll == 0)
+                        if ((die2.Roll + die1.Roll)%2 == 0)
                         {
                             Console.WriteLine("Nice! You got an even sum!");
                             balance = balance + (bet);
@@ -203,7 +203,7 @@ namespace Dice_Game
                         die1.DrawRoll();
                         die2.DrawRoll();
 
-                        if (die2.Roll - die1.Roll != 0)
+                        if ((die2.Roll + die1.Roll)%2 != 0)
                         {
                             Console.WriteLine("Nice! You didn't get an even sum!");
                             balance = balance + (bet);
