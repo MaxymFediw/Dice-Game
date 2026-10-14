@@ -21,7 +21,7 @@ namespace Dice_Game
             balance = 100; //start of with $100
 
             Die die1 = new Die();
-            Thread.Sleep(1);     
+            Thread.Sleep(100);     
             Die die2 = new Die();
 
             die1.Color = ConsoleColor.Cyan;
@@ -49,13 +49,13 @@ namespace Dice_Game
                     {
                         Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
 
-                        //Console.WriteLine(die1);
-                        die1.DrawRoll();
-                        die1.RollDie();
+                        
 
-                        //Console.WriteLine(die2);
-                        die2.DrawRoll();
+                        die1.RollDie();
                         die2.RollDie();
+
+                        die1.DrawRoll();
+                        die2.DrawRoll();
 
                         if (die1.Roll == die2.Roll)
                         {
@@ -67,8 +67,8 @@ namespace Dice_Game
                             Console.ReadKey();
                             done = false;
                         }
-
-                        else
+                        
+                        else if (die1.Roll != die2.Roll)
                         {
                             Console.WriteLine("Damn-You didnt get doubles. But hey, keep playin, and you'll win eventually!");
                             balance = balance - bet;
@@ -99,7 +99,7 @@ namespace Dice_Game
 
                 else if (betChoice == 4)
                 {
-
+                     
                 }
 
                 else 
