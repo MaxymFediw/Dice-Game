@@ -29,14 +29,21 @@ namespace Dice_Game
 
             while (!done) 
             {
-                
+                Console.WriteLine();
+                Console.WriteLine($"Current Balance: ${balance}");
+                Console.WriteLine("");
                 Console.WriteLine("What Will You Be Betting On? (Input the number)");
+                Console.WriteLine("");
                 Console.WriteLine("1 - Doubles");
                 Console.WriteLine("2 - Not Doubles");
                 Console.WriteLine("3 - Even Sum");
                 Console.WriteLine("4 - Odd Sum");
-                Console.WriteLine("5 - Close");
+                Console.WriteLine("5 - Snake Eyes");
+                
+                Console.WriteLine("6 - Close");
                 Int32.TryParse(Console.ReadLine(), out betChoice);
+
+                Console.Clear();
 
                 if (betChoice == 1)
                 {
@@ -46,7 +53,7 @@ namespace Dice_Game
                     Console.WriteLine("How much would you like to bet?");
                     Double.TryParse(Console.ReadLine(), out bet);
 
-                    if (bet <= balance)
+                    if (bet <= balance && bet > 0)
                     {
                         Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
 
@@ -78,12 +85,15 @@ namespace Dice_Game
                             Console.WriteLine("Press any key To Return");
                             Console.ReadKey();
                             done = false;
+                            
                         }
                     }
 
                     else
                     {
-                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance.");
+                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance/Less Than 0. Press ENTER To Contunue.");
+                        Console.ReadKey();
+                        Console.Clear();
                     }
 
                 }
@@ -95,7 +105,7 @@ namespace Dice_Game
                     Console.WriteLine("How much would you like to bet?");
                     Double.TryParse(Console.ReadLine(), out bet);
 
-                    if (bet <= balance)
+                    if (bet <= balance && bet > 0)
                     {
                         Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
 
@@ -132,7 +142,10 @@ namespace Dice_Game
 
                     else
                     {
-                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance.");
+                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance/Less Than 0. Press ENTER To Contunue.");
+                        Console.ReadKey();
+                        Console.Clear();
+
                     }
                 }
 
@@ -143,7 +156,7 @@ namespace Dice_Game
                     Console.WriteLine("How much would you like to bet?");
                     Double.TryParse(Console.ReadLine(), out bet);
 
-                    if (bet <= balance)
+                    if (bet <= balance && bet > 0)
                     {
                         Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
 
@@ -155,7 +168,7 @@ namespace Dice_Game
                         die1.DrawRoll();
                         die2.DrawRoll();
 
-                        if ((die2.Roll + die1.Roll)%2 == 0)
+                        if ((die2.Roll + die1.Roll) % 2 == 0)
                         {
                             Console.WriteLine("Nice! You got an even sum!");
                             balance = balance + (bet);
@@ -180,7 +193,9 @@ namespace Dice_Game
 
                     else
                     {
-                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance.");
+                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance/Less Than 0. Press ENTER To Contunue.");
+                        Console.ReadKey();
+                        Console.Clear();
                     }
                 }
 
@@ -191,7 +206,7 @@ namespace Dice_Game
                     Console.WriteLine("How much would you like to bet?");
                     Double.TryParse(Console.ReadLine(), out bet);
 
-                    if (bet <= balance)
+                    if (bet <= balance && bet > 0)
                     {
                         Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
 
@@ -203,7 +218,7 @@ namespace Dice_Game
                         die1.DrawRoll();
                         die2.DrawRoll();
 
-                        if ((die2.Roll + die1.Roll)%2 != 0)
+                        if ((die2.Roll + die1.Roll) % 2 != 0)
                         {
                             Console.WriteLine("Nice! You didn't get an even sum!");
                             balance = balance + (bet);
@@ -228,11 +243,64 @@ namespace Dice_Game
 
                     else
                     {
-                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance.");
+                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance/Less Than 0. Press ENTER To Contunue.");
+                        Console.ReadKey();
+                        Console.Clear();
                     }
                 }
 
                 else if (betChoice == 5) 
+                {
+                    Console.Clear();
+                    Console.WriteLine("Okay! You want Snake Eyes, huh?");
+                    Console.WriteLine("How much would you like to bet?");
+                    Double.TryParse(Console.ReadLine(), out bet);
+
+                    if (bet <= balance && bet > 0)
+                    {
+                        Console.WriteLine($"Ok, you bet ${bet}... Let's see if Luck's on your side!");
+
+
+
+                        die1.RollDie();
+                        die2.RollDie();
+
+                        die1.DrawRoll();
+                        die2.DrawRoll();
+
+                        if (die1.Roll == 1 && die2.Roll == 1)
+                        {
+                            Console.WriteLine("Nice! You got snake eyes!");
+                            balance = balance + (bet * 10);
+                            Console.WriteLine($"You Now Have ${balance}!");
+
+                            Console.WriteLine("Press any key To Return");
+                            Console.ReadKey();
+                            done = false;
+                        }
+
+                        else if (die1.Roll != die2.Roll)
+                        {
+                            Console.WriteLine("Damn-You didnt get snake eyes. But hey, keep playin, and you'll win eventually!");
+                            balance = balance - bet;
+                            Console.WriteLine($"You have ${balance}.");
+
+                            Console.WriteLine("Press any key To Return");
+                            Console.ReadKey();
+                            done = false;
+                        }
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Invalid Bet. You cannot bet more than your balance/Less Than 0. Press ENTER To Contunue.");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+
+                }
+
+                else if (betChoice == 6)
                 {
                     Console.Clear();
                     Console.WriteLine($"You have: ${balance}");
